@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Portfolio Tracker Presentation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Based on your style.css for cohesion */
+        :root {
+            --dark-blue: #0a192f;
+            --container-bg: rgba(255, 255, 255, 0.05);
+            --neon-blue: #4dd0e1;
+            --neon-green: #4caf50;
+            --neon-purple: #8c9eff;
+            --text-light: #e3f2fd;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--dark-blue), #102a43, #1e3a5f);
+            color: var(--text-light);
+            margin: 0;
+            overflow: hidden; /* Hide scrollbars */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .slide {
+            width: 80vw;
+            height: 80vh;
+            background: var(--container-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 0 30px rgba(77, 208, 225, 0.2);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(0, 188, 212, 0.2);
+            position: absolute;
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+            opacity: 0;
+            transform: scale(0.9);
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: scale(1);
+            display: flex;
+        }
+
+        h1 {
+            font-size: 3rem;
+            background: linear-gradient(90deg, var(--neon-blue), #00bcd4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 15px rgba(77, 208, 225, 0.6);
+            margin-bottom: 0.5em;
+        }
+
+        h2 {
+            color: var(--neon-green);
+            border-bottom: 2px dashed rgba(76, 175, 80, 0.3);
+            padding-bottom: 10px;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            padding-left: 1.5em;
+            position: relative;
+        }
+
+        li::before {
+            content: '»';
+            position: absolute;
+            left: 0;
+            color: var(--neon-purple);
+            font-weight: 700;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        #prev-btn {
+            background: linear-gradient(90deg, #536dfe, var(--neon-purple));
+            box-shadow: 0 0 10px #536dfe;
+        }
+        #next-btn {
+            background: linear-gradient(90deg, var(--neon-green), #8bc34a);
+            box-shadow: 0 0 10px var(--neon-green);
+        }
+
+        .footer {
+            text-align: right;
+            color: #8197a9;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="presentation-container">
+        
+        <div class="slide active" id="slide-1">
+            <div>
+                <h1>📈 Stock Portfolio Tracker</h1>
+                <p style="font-size: 1.5rem; color: var(--neon-blue);">A Full-Stack Portfolio Showcase (Node.js/MySQL)</p>
+                <h2 style="color: var(--text-light);">Project Goals</h2>
+                <ul>
+                    <li>Secure User Authentication using **Bcrypt**.</li>
+                    <li>Robust, validated financial transaction logging.</li>
+                    <li>Dynamic, responsive data visualization.</li>
+                </ul>
+            </div>
+            <div class="footer">Slide 1 of 6</div>
+        </div>
+
+        <div class="slide" id="slide-2">
+            <div>
+                <h1>⚙️ Technology Stack</h1>
+                <h2>Backend & Database</h2>
+                <ul>
+                    <li>**Server:** Node.js + Express framework.</li>
+                    <li>**Database:** MySQL2 (Relational database).</li>
+                    <li>**Security:** **Bcrypt** for password hashing.</li>
+                </ul>
+                <h2>Frontend & Libraries</h2>
+                <ul>
+                    <li>**Design:** Custom Neon Dark Mode CSS (`style.css`).</li>
+                    <li>**Scripting:** Vanilla JavaScript (`script.js`).</li>
+                    <li>**Visualization:** **Chart.js** for balance history.</li>
+                </ul>
+            </div>
+            <div class="footer">Slide 2 of 6</div>
+        </div>
+
+        <div class="slide" id="slide-3">
+            <div>
+                <h1>🔒 Robust Transaction Validation</h1>
+                <p style="color: var(--neon-purple);">Server-side logic prevents errors and maintains account integrity.</p>
+                <h2>Trade Constraints (`server.js`)</h2>
+                <ul>
+                    <li>**Selling:** Verifies if the user holds **sufficient quantity** of the stock.</li>
+                    <li>**Buying/Withdrawing:** Checks if the user has **sufficient cash balance** in their account.</li>
+                    <li>**Atomic Update:** The main account total is updated *immediately* following the trade insertion.</li>
+                </ul>
+            </div>
+            <div class="footer">Slide 3 of 6</div>
+        </div>
+        
+        <div class="slide" id="slide-4">
+            <div>
+                <h1>✨ Dynamic UI & Date Fix</h1>
+                <p>Focus on intuitive design and cross-browser reliability.</p>
+                <h2>Frontend Highlights</h2>
+                <ul>
+                    <li>**Neon Aesthetic:** Consistent dark theme using gradients and box shadows.</li>
+                    <li>**Conditional UI:** Stock Symbol input hides for 'Invest'/'Withdraw' actions.</li>
+                    <li>**Date Timezone Fix:** Uses `Date.UTC()` for reliable date display across all timezones (solved the 5th vs 4th issue).</li>
+                </ul>
+            </div>
+            <div class="footer">Slide 4 of 6</div>
+        </div>
+
+        <div class="slide" id="slide-5">
+            <div>
+                <h1>📉 Data Visualization</h1>
+                <p>Turning transaction logs into meaningful insights.</p>
+                <h2>Charting with Chart.js</h2>
+                <ul>
+                    <li>**Balance History:** Line graph shows the running total balance.</li>
+                    <li>**Dynamic Update:** Chart is re-rendered live after every transaction.</li>
+                    <li>**Aesthetic:** The chart uses the project's neon color palette.</li>
+                </ul>
+            </div>
+            <div class="footer">Slide 5 of 6</div>
+        </div>
+
+        <div class="slide" id="slide-6">
+            <div>
+                <h1>✅ Conclusion & Roadmap</h1>
+                <h2>Project Accomplished</h2>
+                <ul>
+                    <li>Successfully built a secure, data-validated financial tracking tool.</li>
+                    <li>Demonstrated full-stack CRUD (Create, Read, Update, Delete) operations.</li>
+                </ul>
+                <h2>Future Roadmap</h2>
+                <ul>
+                    <li>**Real-Time Data:** Integrate with a financial API to fetch live stock prices.</li>
+                    <li>**Google Auth:** Implement Google Sign-In using OAuth.</li>
+                </ul>
+            </div>
+            <div class="footer">Slide 6 of 6</div>
+        </div>
+
+    </div>
+
+    <div class="controls">
+        <button id="prev-btn" class="btn" disabled>Previous</button>
+        <button id="next-btn" class="btn">Next</button>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 6;
+        const container = document.getElementById('presentation-container');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+
+        function updateSlide(newIndex) {
+            // Deactivate current slide
+            const current = document.getElementById(`slide-${currentSlide}`);
+            current.classList.remove('active');
+
+            // Activate new slide
+            currentSlide = newIndex;
+            const next = document.getElementById(`slide-${currentSlide}`);
+            next.classList.add('active');
+
+            // Update button states
+            prevBtn.disabled = currentSlide === 1;
+            nextBtn.disabled = currentSlide === totalSlides;
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentSlide > 1) {
+                updateSlide(currentSlide - 1);
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentSlide < totalSlides) {
+                updateSlide(currentSlide + 1);
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' && currentSlide < totalSlides) {
+                updateSlide(currentSlide + 1);
+            } else if (e.key === 'ArrowLeft' && currentSlide > 1) {
+                updateSlide(currentSlide - 1);
+            }
+        });
+
+        // Initialize first slide's state on load
+        document.addEventListener('DOMContentLoaded', () => {
+            updateSlide(1); 
+        });
+    </script>
+</body>
+</html>

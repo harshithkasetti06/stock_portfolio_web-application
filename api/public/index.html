@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stock Portfolio Tracker</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="hero">
+    <h1> 💲 Stock Portfolio Tracker</h1>
+    <p class="subtitle">Track trades, investments & withdrawals easily.</p>
+  </div>
+
+  <div class="container">
+    <div class="auth-navigation">
+      <button id="show-login-btn" class="btn neon-blue active-tab">Login</button>
+      <button id="show-register-btn" class="btn neon-green">Register</button>
+      <button id="logout-btn" class="btn neon-purple hidden">Logout</button>
+      <span id="current-user-display" class="user-display hidden"></span>
+    </div>
+
+    <section id="auth-section">
+      <div id="login-view" class="auth-form active-form">
+        <h2>Login</h2>
+        <form id="login-form">
+          <input type="text" id="login-username" placeholder="Username" required>
+          <input type="password" id="login-password" placeholder="Password" required>
+          <button type="submit" class="btn neon-blue">Login</button>
+        </form>
+      </div>
+
+      <div id="register-view" class="auth-form hidden-form">
+        <h2>Register</h2>
+        <form id="register-form">
+          <input type="text" id="reg-username" placeholder="Username" required>
+          <input type="password" id="reg-password" placeholder="Password" required>
+          <button type="submit" class="btn neon-green">Register</button>
+        </form>
+      </div>
+    </section>
+
+    <div id="dashboard" class="hidden">
+      <section class="summary-section">
+        <h2>💰 Account Summary</h2>
+        <p>Total Balance: <span id="accountTotal">$0.00</span></p>
+      </section>
+
+      <section class="trade-section">
+        <h2>💰 Add Transaction</h2>
+        <div class="trade-form">
+          <input type="date" id="date">
+          <select id="action">
+            <option value="buy">Buy Stock</option>
+            <option value="sell">Sell Stock</option>
+            <option value="invest">Invest (Deposit)</option>
+            <option value="withdraw">Withdraw</option>
+          </select>
+          <input type="text" id="stock" placeholder="Stock Symbol (for buy/sell)">
+          <input type="number" id="amount" placeholder="Amount ($)" step="0.01">
+          <button id="addTradeBtn" class="btn neon-purple">Add Transaction</button>
+        </div>
+      </section>
+
+      <section class="table-section">
+        <h2>📊 Portfolio</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Action</th>
+              <th>Stock</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody id="portfolioBody"></tbody>
+        </table>
+      </section>
+
+      <section class="chart-section">
+        <h2>📉 Balance History</h2>
+        <canvas id="profitChart"></canvas>
+      </section>
+    </div>
+  </div>
+
+  <footer><p>Made with ❤️ by harshith and team</p></footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
